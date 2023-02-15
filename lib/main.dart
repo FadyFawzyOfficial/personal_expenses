@@ -41,8 +41,8 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             width: double.infinity,
             child: Card(
               color: Colors.blue,
@@ -50,9 +50,10 @@ class MyHomePage extends StatelessWidget {
               child: Text('Chart!'),
             ),
           ),
-          Card(
-            color: Colors.amber,
-            child: Text('List of Transactions'),
+          Column(
+            children: transactions
+                .map((transaction) => Card(child: Text(transaction.title)))
+                .toList(),
           ),
         ],
       ),
