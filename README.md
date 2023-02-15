@@ -1,16 +1,11 @@
-# personal_expenses
+# Personal Expenses 💵💰
+## Our Goal
 
-A new Flutter project.
+Personal Expenses App is for learning purpose.
+It's the 2nd App which in the 4nd Section (Widgets, Styling, Adding Logic - Building a Real App [PERSONAL EXPENSES APP]) of Flutter & Dart - The Complete Guide [2023 Edition] Course (On Udemy)
 
-## Getting Started
+Flutter version: 3.3.3
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Created & Developed by:
+Eng.Fady Fawzy
+Mobile Application Developer
