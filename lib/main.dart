@@ -22,6 +22,8 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter App')),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
           SizedBox(
             width: double.infinity,
@@ -32,6 +34,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Card(
+            color: Colors.amber,
             child: Text('List of Transactions'),
           ),
         ],
