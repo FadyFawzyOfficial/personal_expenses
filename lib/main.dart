@@ -35,6 +35,9 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  late String title;
+  late String amount;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,15 +60,17 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Title'),
+                    onChanged: (value) => title = value,
                   ),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Amount'),
+                    onChanged: (value) => amount = value,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(foregroundColor: Colors.purple),
-                    onPressed: () {},
+                    onPressed: () => print('$title - $amount'),
                     child: const Text('Add Transaction'),
                   ),
                 ],
