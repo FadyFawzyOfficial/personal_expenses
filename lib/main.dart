@@ -63,9 +63,19 @@ class MyHomePage extends StatelessWidget {
                           ),
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            border: Border.all(width: 2),
+                            border: Border.all(
+                              width: 2,
+                              color: Colors.purple,
+                            ),
                           ),
-                          child: Text('${transaction.amount}'),
+                          child: Text(
+                            '${transaction.amount}',
+                            style: const TextStyle(
+                              color: Colors.purple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                         Column(
                           children: [
