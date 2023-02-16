@@ -37,6 +37,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   # Fady Fawzy Comment: Flutter Version is 3.3.3
   cupertino_icons: ^1.0.5
+  # Provides internationalization and localization facilities, including message translation,
+  # plurals and genders, date/number formatting and parsing, and bidirectional text.
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
