@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            '${transaction.amount}',
+                            '\$${transaction.amount}',
                             style: const TextStyle(
                               color: Colors.purple,
                               fontSize: 20,
