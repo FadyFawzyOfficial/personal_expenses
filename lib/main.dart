@@ -78,9 +78,21 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(transaction.title),
-                            Text('${transaction.date}'),
+                            Text(
+                              transaction.title,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '${transaction.date}',
+                              style: const TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                           ],
                         ),
                       ],
