@@ -35,12 +35,14 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter App')),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(
@@ -49,6 +51,32 @@ class MyHomePage extends StatelessWidget {
               color: Colors.blue,
               elevation: 5,
               child: Text('Chart!'),
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    controller: amountController,
+                    decoration: const InputDecoration(labelText: 'Amount'),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(foregroundColor: Colors.purple),
+                    onPressed: () => debugPrint(
+                      '${titleController.text} - ${amountController.text}',
+                    ),
+                    child: const Text('Add Transaction'),
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
