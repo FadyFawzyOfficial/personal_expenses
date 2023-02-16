@@ -35,8 +35,8 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
-  late String title;
-  late String amount;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,16 +61,18 @@ class MyHomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   TextField(
+                    controller: titleController,
                     decoration: const InputDecoration(labelText: 'Title'),
-                    onChanged: (value) => title = value,
                   ),
                   TextField(
+                    controller: amountController,
                     decoration: const InputDecoration(labelText: 'Amount'),
-                    onChanged: (value) => amount = value,
                   ),
                   TextButton(
                     style: TextButton.styleFrom(foregroundColor: Colors.purple),
-                    onPressed: () => print('$title - $amount'),
+                    onPressed: () => debugPrint(
+                      '${titleController.text} - ${amountController.text}',
+                    ),
                     child: const Text('Add Transaction'),
                   ),
                 ],
