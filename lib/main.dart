@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/user_transaction.dart';
+import 'models/transaction.dart';
+import 'widgets/new_transaction.dart';
+import 'widgets/transactions_list.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,8 +19,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 99.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly Groceries',
+      amount: 80.00,
+      date: DateTime.now(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +50,15 @@ class MyHomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () => _startAddNewTransaction(context),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               width: double.infinity,
               child: Card(
                 color: Colors.blue,
@@ -44,15 +66,33 @@ class MyHomePage extends StatelessWidget {
                 child: Text('Chart!'),
               ),
             ),
-            UserTransaction(),
+            TransactionsList(transactions: _transactions),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
+  }
+
+  void _startAddNewTransaction(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => NewTransaction(addNewTransaction: _addNewTransaction),
+    );
+  }
+
+  void _addNewTransaction(String title, double amount) {
+    final newTransaction = Transaction(
+      id: '${DateTime.now()}',
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() => _transactions.add(newTransaction));
   }
 }
