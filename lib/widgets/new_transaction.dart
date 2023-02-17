@@ -51,5 +51,7 @@ class _NewTransactionState extends State<NewTransaction> {
     if (inputTitle.isEmpty || inputAmount < 0) return;
 
     widget.addNewTransaction(inputTitle, inputAmount);
+
+    Navigator.pop(context);
   }
 }
