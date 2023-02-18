@@ -34,7 +34,6 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => submitTransaction(),
             ),
             TextButton(
-              style: TextButton.styleFrom(foregroundColor: Colors.purple),
               onPressed: submitTransaction,
               child: const Text('Add Transaction'),
             ),

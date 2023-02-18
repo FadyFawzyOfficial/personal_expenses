@@ -28,13 +28,13 @@ class TransactionsList extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 2,
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   child: Text(
                     '\$${transaction.amount.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.purple,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
