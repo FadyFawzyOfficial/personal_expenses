@@ -14,13 +14,11 @@ class Chart extends StatelessWidget {
 
       var totalDayExpenses = 0.0;
 
-      for (var i = 0; i < recentTransactions.length; i++) {
-        final currentTransactionDate = recentTransactions[i].date;
-
-        if (currentTransactionDate.day == weekDay.day &&
-            currentTransactionDate.month == weekDay.month &&
-            currentTransactionDate.year == weekDay.year) {
-          totalDayExpenses += recentTransactions[i].amount;
+      for (var transaction in recentTransactions) {
+        if (transaction.date.day == weekDay.day &&
+            transaction.date.month == weekDay.month &&
+            transaction.date.year == weekDay.year) {
+          totalDayExpenses += transaction.amount;
         }
       }
 
