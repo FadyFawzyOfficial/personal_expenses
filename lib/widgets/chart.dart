@@ -22,15 +22,19 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E(weekDay));
+      print(DateFormat.E().format(weekDay));
       print(totalDayExpenses);
 
-      return {'day': DateFormat.E(weekDay), 'amount': totalDayExpenses};
+      return {
+        'day': DateFormat.E().format(weekDay),
+        'amount': totalDayExpenses,
+      };
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(weeklyTransactions);
     return const Card(
       elevation: 6,
       margin: EdgeInsets.all(16),
