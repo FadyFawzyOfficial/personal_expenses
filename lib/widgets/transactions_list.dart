@@ -12,54 +12,69 @@ class TransactionsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      child: ListView.builder(
-        itemCount: transactions.length,
-        itemBuilder: (context, index) {
-          final transaction = transactions[index];
-          return Card(
-            child: Row(
+      child: transactions.isEmpty
+          ? Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  child: Text(
-                    '\$${transaction.amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                Text(
+                  'No transactions add yet!',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      transaction.title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      DateFormat.yMMMd().format(transaction.date),
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 16),
+                Image.asset(
+                  'assets/images/waiting.png',
+                  height: 250,
+                  fit: BoxFit.cover,
                 ),
               ],
+            )
+          : ListView.builder(
+              itemCount: transactions.length,
+              itemBuilder: (context, index) {
+                final transaction = transactions[index];
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        child: Text(
+                          '\$${transaction.amount.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            transaction.title,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            DateFormat.yMMMd().format(transaction.date),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
