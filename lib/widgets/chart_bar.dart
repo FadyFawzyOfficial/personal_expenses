@@ -43,7 +43,16 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
-        FittedBox(child: Text('\$${dayExpenses.toStringAsFixed(0)}'))
+        SizedBox(
+          // Now the text here at the bottom will always have a height of 24.
+          // No matter how much height it needs and therefore the text is now aligned,
+          // the bars are aligned and the text at the top is also aligned.
+          // And that of course looks better than bars jumping randomly around.
+          height: 24,
+          child: FittedBox(
+            child: Text('\$${dayExpenses.toStringAsFixed(0)}'),
+          ),
+        ),
       ],
     );
   }
