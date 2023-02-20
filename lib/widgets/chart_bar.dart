@@ -43,7 +43,7 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
-        Text('\$${dayExpenses.toStringAsFixed(0)}')
+        FittedBox(child: Text('\$${dayExpenses.toStringAsFixed(0)}'))
       ],
     );
   }

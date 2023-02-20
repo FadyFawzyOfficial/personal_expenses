@@ -46,13 +46,22 @@ class Chart extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: weeklyTransactions
               .map(
-                (transaction) => ChartBar(
-                  label: transaction['day'] as String,
-                  dayExpenses: transaction['amount'] as double,
-                  weekExpenses: weekExpenses,
+                (transaction) => Expanded(
+                  // With FlexFit.tight we then ensure that the child also can't
+                  // grow because by default every child has the same space but
+                  // child can grow and take some space away from other children
+                  // if they need to. With tight, we force a child its assigned
+                  // width or into its assigned size and it can't grow.
+                  //! Expanded == Flexible(fit: FlexFit.tight)
+                  //* Expanded widget is similar to the Flexible widget in flutter,
+                  //* with its fit property set to FlexFit.tight as default.
+                  child: ChartBar(
+                    label: transaction['day'] as String,
+                    dayExpenses: transaction['amount'] as double,
+                    weekExpenses: weekExpenses,
+                  ),
                 ),
               )
               .toList(),
