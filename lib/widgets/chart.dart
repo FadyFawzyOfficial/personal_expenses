@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 import '../models/transaction.dart';
+import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
@@ -22,22 +23,41 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E().format(weekDay));
-      print(totalDayExpenses);
-
       return {
-        'day': DateFormat.E().format(weekDay),
+        'day': DateFormat.E().format(weekDay)[0],
         'amount': totalDayExpenses,
       };
     });
   }
 
+  double get weekExpenses {
+    return weeklyTransactions.fold(
+      0,
+      (previousValue, transaction) =>
+          previousValue + (transaction['amount'] as double),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(weeklyTransactions);
-    return const Card(
+    return Card(
       elevation: 6,
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: weeklyTransactions
+              .map(
+                (transaction) => ChartBar(
+                  label: transaction['day'] as String,
+                  dayExpenses: transaction['amount'] as double,
+                  weekExpenses: weekExpenses,
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }
