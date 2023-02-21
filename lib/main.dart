@@ -84,17 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Chart(recentTransactions: _recentTransaction),
-            TransactionsList(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Chart(recentTransactions: _recentTransaction),
+          Expanded(
+            child: TransactionsList(
               transactions: _transactions,
               deleteTransaction: _deleteTransaction,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
