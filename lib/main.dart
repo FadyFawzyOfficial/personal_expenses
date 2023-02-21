@@ -89,7 +89,10 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(recentTransactions: _recentTransaction),
-            TransactionsList(transactions: _transactions),
+            TransactionsList(
+              transactions: _transactions,
+              deleteTransaction: _deleteTransaction,
+            ),
           ],
         ),
       ),
@@ -118,4 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() => _transactions.add(newTransaction));
   }
+
+  void _deleteTransaction({required String id}) => setState(
+      () => _transactions.removeWhere((transaction) => transaction.id == id));
 }
