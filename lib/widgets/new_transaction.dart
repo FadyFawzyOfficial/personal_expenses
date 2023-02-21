@@ -33,7 +33,20 @@ class _NewTransactionState extends State<NewTransaction> {
               decoration: const InputDecoration(labelText: 'Amount'),
               onSubmitted: (_) => submitTransaction(),
             ),
-            TextButton(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('No Date Chosen'),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Choose Date',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+            ElevatedButton(
               onPressed: submitTransaction,
               child: const Text('Add Transaction'),
             ),
