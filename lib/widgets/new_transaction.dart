@@ -79,13 +79,16 @@ class _NewTransactionState extends State<NewTransaction> {
     });
   }
 
+  // Avoid the Error or Exception that will be thrown when the Amount Field is Empty
   void submitTransaction() {
     final inputTitle = titleController.text;
-    final inputAmount = double.parse(amountController.text);
+    final inputAmount = double.tryParse(amountController.text);
 
-    if (inputTitle.isEmpty || inputAmount < 0 || _selectedDate == null) return;
+    if (inputTitle.isEmpty || (inputAmount ?? 0) < 0 || _selectedDate == null) {
+      return;
+    }
 
-    widget.addNewTransaction(inputTitle, inputAmount, _selectedDate!);
+    widget.addNewTransaction(inputTitle, inputAmount!, _selectedDate!);
 
     Navigator.pop(context);
   }
