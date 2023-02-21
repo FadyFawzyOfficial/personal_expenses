@@ -84,14 +84,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Chart(recentTransactions: _recentTransaction),
-            TransactionsList(transactions: _transactions),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Chart(recentTransactions: _recentTransaction),
+          Expanded(
+            child: TransactionsList(
+              transactions: _transactions,
+              deleteTransaction: _deleteTransaction,
+            ),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
@@ -118,4 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     setState(() => _transactions.add(newTransaction));
   }
+
+  void _deleteTransaction({required String id}) => setState(
+      () => _transactions.removeWhere((transaction) => transaction.id == id));
 }
