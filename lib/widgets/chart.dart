@@ -44,7 +44,7 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: const EdgeInsets.all(16),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: weeklyTransactions
               .map(
