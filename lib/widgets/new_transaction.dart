@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
-  final void Function(String title, double amount) addNewTransaction;
+  final void Function(String title, double amount, DateTime date)
+      addNewTransaction;
 
   const NewTransaction({super.key, required this.addNewTransaction});
 
@@ -12,6 +14,8 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,27 @@ class _NewTransactionState extends State<NewTransaction> {
               decoration: const InputDecoration(labelText: 'Amount'),
               onSubmitted: (_) => submitTransaction(),
             ),
-            TextButton(
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    _selectedDate == null
+                        ? 'No Date Chosen'
+                        : DateFormat.yMMMd().format(_selectedDate!),
+                  ),
+                  TextButton(
+                    onPressed: pickDate,
+                    child: const Text(
+                      'Choose Date',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
               onPressed: submitTransaction,
               child: const Text('Add Transaction'),
             ),
@@ -43,13 +67,28 @@ class _NewTransactionState extends State<NewTransaction> {
     );
   }
 
+  void pickDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    ).then((date) {
+      if (date == null) return;
+      setState(() => _selectedDate = date);
+    });
+  }
+
+  // Avoid the Error or Exception that will be thrown when the Amount Field is Empty
   void submitTransaction() {
     final inputTitle = titleController.text;
-    final inputAmount = double.parse(amountController.text);
+    final inputAmount = double.tryParse(amountController.text);
 
-    if (inputTitle.isEmpty || inputAmount < 0) return;
+    if (inputTitle.isEmpty || (inputAmount ?? 0) < 0 || _selectedDate == null) {
+      return;
+    }
 
-    widget.addNewTransaction(inputTitle, inputAmount);
+    widget.addNewTransaction(inputTitle, inputAmount!, _selectedDate!);
 
     Navigator.pop(context);
   }
