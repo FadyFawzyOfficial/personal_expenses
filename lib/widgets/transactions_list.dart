@@ -23,11 +23,13 @@ class TransactionsList extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 16),
-              Image.asset(
-                'assets/images/waiting.png',
-                height: 250,
-                fit: BoxFit.cover,
+              Expanded(
+                child: Image.asset(
+                  'assets/images/waiting.png',
+                  fit: BoxFit.cover,
+                ),
               ),
+              const SizedBox(height: 16),
             ],
           )
         : ListView.builder(
