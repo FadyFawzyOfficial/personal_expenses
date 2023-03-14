@@ -23,11 +23,13 @@ class TransactionsList extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 16),
-              Image.asset(
-                'assets/images/waiting.png',
-                height: 250,
-                fit: BoxFit.cover,
+              Expanded(
+                child: Image.asset(
+                  'assets/images/waiting.png',
+                  fit: BoxFit.cover,
+                ),
               ),
+              const SizedBox(height: 16),
             ],
           )
         : ListView.builder(
@@ -55,11 +57,24 @@ class TransactionsList extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   subtitle: Text(DateFormat.yMMMd().format(transaction.date)),
-                  trailing: IconButton(
-                    onPressed: () => deleteTransaction(id: transaction.id),
-                    color: Theme.of(context).errorColor,
-                    icon: const Icon(Icons.delete_rounded),
-                  ),
+                  // When we have more width, I want to show a button with a
+                  // text next to it.
+                  trailing: MediaQuery.of(context).size.width > 500
+                      ? TextButton.icon(
+                          onPressed: () =>
+                              deleteTransaction(id: transaction.id),
+                          icon: const Icon(Icons.delete_rounded),
+                          label: const Text('Delete'),
+                          style: TextButton.styleFrom(
+                            foregroundColor: Theme.of(context).errorColor,
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () =>
+                              deleteTransaction(id: transaction.id),
+                          color: Theme.of(context).errorColor,
+                          icon: const Icon(Icons.delete_rounded),
+                        ),
                 ),
               );
             },

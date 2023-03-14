@@ -87,8 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Chart(recentTransactions: _recentTransaction),
           Expanded(
+            flex: 3,
+            child: Chart(recentTransactions: _recentTransaction),
+          ),
+          Expanded(
+            flex: 7,
             child: TransactionsList(
               transactions: _transactions,
               deleteTransaction: _deleteTransaction,
@@ -107,6 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _startAddNewTransaction(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      // This will allow the ModalBottomSheet to take the full required height
+      // which gives more insurance that TextField is not covered by the keyboard.
+      isScrollControlled: true,
       builder: (_) => NewTransaction(addNewTransaction: _addNewTransaction),
     );
   }
