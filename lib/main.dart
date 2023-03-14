@@ -111,6 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _startAddNewTransaction(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      // This will allow the ModalBottomSheet to take the full required height
+      // which gives more insurance that TextField is not covered by the keyboard.
+      isScrollControlled: true,
       builder: (_) => NewTransaction(addNewTransaction: _addNewTransaction),
     );
   }
