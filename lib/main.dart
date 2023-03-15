@@ -77,21 +77,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final body = Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          flex: 3,
-          child: Chart(recentTransactions: _recentTransaction),
-        ),
-        Expanded(
-          flex: 7,
-          child: TransactionsList(
-            transactions: _transactions,
-            deleteTransaction: _deleteTransaction,
+    final body = SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 3,
+            child: Chart(recentTransactions: _recentTransaction),
           ),
-        ),
-      ],
+          Expanded(
+            flex: 7,
+            child: TransactionsList(
+              transactions: _transactions,
+              deleteTransaction: _deleteTransaction,
+            ),
+          ),
+        ],
+      ),
     );
 
     return Platform.isIOS
