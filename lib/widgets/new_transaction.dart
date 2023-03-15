@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'adaptive_text_button.dart';
+
 class NewTransaction extends StatefulWidget {
   final void Function(String title, double amount, DateTime date)
       addNewTransaction;
@@ -19,49 +21,56 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              controller: titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
-              onSubmitted: (_) => submitTransaction(),
-            ),
-            TextField(
-              controller: amountController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: 'Amount'),
-              onSubmitted: (_) => submitTransaction(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _selectedDate == null
-                        ? 'No Date Chosen'
-                        : DateFormat.yMMMd().format(_selectedDate!),
-                  ),
-                  TextButton(
-                    onPressed: pickDate,
-                    child: const Text(
-                      'Choose Date',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
+    // SingleChildScrollView to prevent the ModalBottomSheet from taking the
+    // whole screen hight and causing BOTTOM OVERFLOWED BY *** PIXELS
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 8,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: 'Title'),
+                onSubmitted: (_) => submitTransaction(),
               ),
-            ),
-            ElevatedButton(
-              onPressed: submitTransaction,
-              child: const Text('Add Transaction'),
-            ),
-          ],
+              TextField(
+                controller: amountController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(labelText: 'Amount'),
+                onSubmitted: (_) => submitTransaction(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? 'No Date Chosen'
+                          : DateFormat.yMMMd().format(_selectedDate!),
+                    ),
+                    AdaptiveTextButton(
+                      label: 'Choose Date',
+                      onPressed: pickDate,
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: submitTransaction,
+                child: const Text('Add Transaction'),
+              ),
+            ],
+          ),
         ),
       ),
     );
