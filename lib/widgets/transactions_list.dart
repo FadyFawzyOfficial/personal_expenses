@@ -24,14 +24,20 @@ class TransactionsList extends StatelessWidget {
                 'No transactions add yet!',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: Image.asset(
-                  'assets/images/waiting.png',
-                  fit: BoxFit.cover,
+              //! You can skip unnecessary widget rebuilds if you mark a widget as const.
+              //! This object will never ever change, ant that tells Flutter that since
+              //! this will never change, when it rebuilds the widget tree, for this
+              //! specific widget it can simply take the old widget which was in the same
+              //! position, it doesn't need to recreate the object.
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                child: Expanded(
+                  child: Image(
+                    image: AssetImage('assets/images/waiting.png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              const SizedBox(height: 16),
             ],
           )
         : ListView.builder(
