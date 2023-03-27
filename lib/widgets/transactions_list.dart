@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
+import 'package:personal_expenses/utilities/tracer.dart';
 
 import '../models/transaction.dart';
 
@@ -15,6 +16,7 @@ class TransactionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    trace();
     return transactions.isEmpty
         ? Column(
             children: [

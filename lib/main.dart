@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_expenses/utilities/tracer.dart';
 
 import 'models/transaction.dart';
 import 'widgets/chart.dart';
@@ -77,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    trace();
     final body = SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
