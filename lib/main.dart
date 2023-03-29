@@ -2,12 +2,11 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/utilities/tracer.dart';
 
 import 'models/transaction.dart';
-import 'widgets/chart.dart';
+import 'utilities/tracer.dart';
 import 'widgets/new_transaction.dart';
-import 'widgets/transactions_list.dart';
+import 'widgets/transactions_body.dart';
 
 void main() => runApp(const MyApp());
 
@@ -66,36 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
-  List<Transaction> get _recentTransaction => _transactions
-      .where(
-        (transaction) => transaction.date.isAfter(
-          DateTime.now().subtract(
-            const Duration(days: 7),
-          ),
-        ),
-      )
-      .toList();
-
   @override
   Widget build(BuildContext context) {
     trace();
-    final body = SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            flex: 3,
-            child: Chart(recentTransactions: _recentTransaction),
-          ),
-          Expanded(
-            flex: 7,
-            child: TransactionsList(
-              transactions: _transactions,
-              deleteTransaction: _deleteTransaction,
-            ),
-          ),
-        ],
-      ),
+    final body = TransactionsBody(
+      transactions: _transactions,
+      deleteTransaction: _deleteTransaction,
     );
 
     return Platform.isIOS
