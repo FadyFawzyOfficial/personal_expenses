@@ -22,12 +22,14 @@ class TransactionsList extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: transactions.isEmpty
           ? const TransactionsEmptyState()
-          : ListView.builder(
-              itemCount: transactions.length,
-              itemBuilder: (context, index) => TransactionCard(
-                transaction: transactions[index],
-                deleteTransaction: deleteTransaction,
-              ),
+          : ListView(
+              children: transactions
+                  .map((transaction) => TransactionCard(
+                        key: ValueKey(transaction.id),
+                        transaction: transaction,
+                        deleteTransaction: deleteTransaction,
+                      ))
+                  .toList(),
             ),
     );
   }
