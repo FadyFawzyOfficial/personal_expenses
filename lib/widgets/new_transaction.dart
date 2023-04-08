@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../utilities/tracer.dart';
 import 'adaptive_text_button.dart';
 
 class NewTransaction extends StatefulWidget {
   final void Function(String title, double amount, DateTime date)
       addNewTransaction;
 
-  const NewTransaction({super.key, required this.addNewTransaction});
+  NewTransaction({super.key, required this.addNewTransaction}) {
+    trace();
+  }
 
   @override
-  State<NewTransaction> createState() => _NewTransactionState();
+  // ignore: no_logic_in_create_state
+  State<NewTransaction> createState() {
+    trace();
+    return _NewTransactionState();
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
@@ -18,6 +25,24 @@ class _NewTransactionState extends State<NewTransaction> {
   final amountController = TextEditingController();
 
   DateTime? _selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    trace();
+  }
+
+  @override
+  void didUpdateWidget(covariant NewTransaction oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    trace();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    trace();
+  }
 
   @override
   Widget build(BuildContext context) {

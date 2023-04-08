@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
+import 'package:personal_expenses/utilities/tracer.dart';
 
 import '../models/transaction.dart';
 import 'chart_bar.dart';
@@ -40,6 +41,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    trace();
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(16),

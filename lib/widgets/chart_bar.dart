@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expenses/utilities/tracer.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -14,6 +15,7 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    trace();
     return Column(
       children: [
         Text(label),
